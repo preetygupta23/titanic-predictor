@@ -1,0 +1,10 @@
+File Name	Role	"""The One Sentence Description"""
+data_loader.py	Ingestor	"Loads the CSV and warns you if the data is unbalanced (e.g., if too many people died)."
+feature_engineering.py	Creator	"Brainstorms new ideas, like combining family members into one FamilySize score."
+preprocessor.py	Refiner	"Fixes the ""Age"" column using Titles and converts text (Male/Female) into numbers (0/1)."
+test_distribution.py	Visual Auditor	"Shows you a graph to prove your ""Age"" fixes didn't warp the reality of the data."
+test_logic.py	Security Guard	Automatically stops the program if it finds a single NaN or a column it shouldn't see.
+model_trainer.py	Teacher	"Trains the Random Forest ""brain"" and saves what it learned into a .pkl file."
+bias_validator.py	Ethics Officer	"Checks if the model is being ""lazy"" by just guessing everyone in 3rd class dies."
+predict.py	Messenger	"Takes the finalized ""brain"" and applies it to the test.csv to get your final answers."
+main.py	Conductor	The master script that tells all the other files when it's their turn to run.
