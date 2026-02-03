@@ -2,6 +2,24 @@ import streamlit as st
 import pandas as pd
 import joblib
 
+# --- SIDEBAR DOCUMENTATION ---
+with st.sidebar:
+    st.header("About the Project")
+    st.info("""
+    **Model:** Random Forest Classifier  
+    **Accuracy:** ~83%  
+    **Framework:** Modular Pipeline (Scikit-Learn)
+    """)
+
+    st.subheader("Key Features Used")
+    st.write("- **Title:** Extracted from names (e.g., Master, Miss)")
+    st.write("- **FamilySize:** Calculated from siblings & parents")
+    st.write("- **Pclass:** Socio-economic status")
+
+    st.divider()
+    st.caption("Developed by [Your Name] | 2026")
+    st.caption("Check out the full code on [GitHub](Your_Repo_Link_Here)")
+
 # Load the trained model and the column names
 model = joblib.load('titanic_model.pkl')
 model_columns = joblib.load('model_columns.pkl')
