@@ -17,8 +17,8 @@ with st.sidebar:
     st.write("- **Pclass:** Socio-economic status")
 
     st.divider()
-    st.caption("Developed by [Your Name] | 2026")
-    st.caption("Check out the full code on [GitHub](Your_Repo_Link_Here)")
+    st.caption("Developed by Preety Gupta | 2026")
+    st.caption("Check out the full code on [GitHub](https://github.com/preetygupta23/titanic-predictor.git)")
 
 # Load the trained model and the column names
 model = joblib.load('titanic_model.pkl')
