@@ -1,9 +1,16 @@
 """
-**Purpose**: Data cleaning and transformation into machine-readable formats.
-- **`extract_titles(df)`**: Parses the `Name` column to find titles like "Mr," "Miss," and "Master." This is the core logic for intelligent age imputation.
-- **`impute_age(df)`**: Imputes missing values by mapping the Title to the median age of that specific group.
-- **`clean_data(df)`**: Drops high-cardinality/leaking columns (`PassengerId`, `Ticket`) and applies One-Hot Encoding to categorical variables.
+MODULE: preprocessor.py
+DESCRIPTION: Data transformation and feature engineering layer.
 
+TRANSFORMATIONS:
+1. Title Extraction: Parses 'Name' to create 'Title' category (Master, Miss, Mr, etc.).
+2. Grouped Imputation: Fills missing 'Age' values based on the median age of the 'Title' group.
+3. Feature Engineering: Creates 'FamilySize' from 'SibSp' and 'Parch'.
+4. Categorical Encoding: Maps 'Sex' and 'Embarked' to numerical values.
+
+QA CONTROLS:
+- Asserts that 'PassengerId' and 'Ticket' are dropped to prevent feature leakage.
+- Validates that final output is a numeric-only matrix.
 """
 import pandas as pd
 import numpy as np

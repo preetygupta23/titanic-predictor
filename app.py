@@ -1,3 +1,19 @@
+"""
+MODULE: app.py
+DESCRIPTION: Streamlit web interface for real-time survival predictions.
+
+INTEGRATION:
+- Loads 'titanic_model.pkl' (Random Forest Classifier).
+- Loads 'model_columns.pkl' to ensure input alignment.
+
+TESTING (Boundary Value Analysis):
+- Age Range: 0.42 to 80.0 years.
+- Pclass: 1, 2, 3.
+- Fare: $0.00 to $512.33.
+
+USAGE: Run via 'streamlit run app.py' or view live on Streamlit Cloud.
+"""
+
 import streamlit as st
 import pandas as pd
 import joblib
