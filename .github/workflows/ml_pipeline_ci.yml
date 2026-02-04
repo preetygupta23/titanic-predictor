@@ -27,3 +27,14 @@ jobs:
     - name: Run Automated QA Suite
       run: |
         pytest test_suite.py
+
+    - name: Run Automated QA Suite with Report
+        run: |
+          pytest test_suite.py --html=report.html --self-contained-html
+
+          - name: Upload QA Test Report
+            uses: actions/checkout@v4
+            if: always() # This ensures the report is saved even if tests fail
+            with:
+              name: qa-test-report
+              path: report.html
