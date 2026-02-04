@@ -6,3 +6,5 @@ seaborn
 joblib
 streamlit
 pytest-html
+selenium
+webdriver-manager

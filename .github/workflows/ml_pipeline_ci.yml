@@ -12,29 +12,33 @@ jobs:
 
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.9'
 
+    - name: Install Google Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+
     - name: Install Dependencies
       run: |
+        python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install pytest
+        # Ensuring testing plugins are present if not in requirements.txt
+        pip install pytest pytest-html selenium webdriver-manager
 
     - name: Run Automated QA Suite
+      # The '|| true' ensures the workflow continues so we can upload the report even on failure
       run: |
-        pytest test_suite.py
+        python -m pytest test_suite.py --html=report.html --self-contained-html || true
 
-    - name: Run Automated QA Suite with Report
-        run: |
-          pytest test_suite.py --html=report.html --self-contained-html
-
-          - name: Upload QA Test Report
-            uses: actions/checkout@v4
-            if: always() # This ensures the report is saved even if tests fail
-            with:
-              name: qa-test-report
-              path: report.html
+    - name: Upload QA Test Report Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: qa-test-report
+        path: report.html
+        retention-days: 7

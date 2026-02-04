@@ -19,6 +19,14 @@ import joblib
 import os
 
 
+def test_streamlit_ui_is_responsive(driver):
+    """QA Smoke Test: Verify the live web app loads properly."""
+    url = "YOUR_STREAMLIT_URL_HERE"
+    driver.get(url)
+
+    # Check if the title exists on the page
+    assert "Titanic" in driver.title, f"Title mismatch! Current title: {driver.title}"
+
 def test_data_integrity():
     """Verify clean data before any training starts."""
     from data_loader import load_titanic_data
