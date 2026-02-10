@@ -27,21 +27,22 @@ jobs:
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        # Explicitly install reporting and browser tools to ensure they exist
         pip install pytest pytest-html selenium webdriver-manager
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Run Automated QA Suite
-      # '|| true' ensures the workflow continues to the upload step even if a test fails
+      # We use 'python -m pytest' to ensure the environment sees the plugins
       run: |
         python -m pytest test_suite.py --html=report.html --self-contained-html || true
+
+    - name: Debug - List Files
+      # This helps us see if report.html was actually created
+      run: ls -la
 
     - name: Upload QA Test Report Artifact
       uses: actions/upload-artifact@v4
       with:
         name: qa-test-report
-        # Using a specific path ensures GitHub finds exactly what was generated
         path: report.html
-        # This makes the build fail if the file was never created, helping us debug
         if-no-files-found: error
         retention-days: 7
