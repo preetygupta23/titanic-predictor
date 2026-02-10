@@ -24,6 +24,7 @@ def run_pipeline():
 
     print("🚀 Starting Titanic Survival Pipeline...\n")
 
+
     # Step 1: Training
     print("Step 1: Training Model...")
     train_titanic_model(TRAIN_DATA)
