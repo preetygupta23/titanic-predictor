@@ -1,3 +1,4 @@
+![ML Quality Assurance (CI)](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/actions/workflows/ml_pipeline_ci.yml/badge.svg)
 **Titanic Survival Predictor: A QA-Driven ML Pipeline**
 📌 Project Overview
 This repository contains a production-grade Machine Learning pipeline for predicting Titanic passenger survival. Unlike standard notebook-based approaches, this project implements Modular Software Architecture, Automated CI/CD Testing, and a Formal QA Framework.
