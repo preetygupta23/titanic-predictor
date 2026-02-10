@@ -30,17 +30,20 @@ jobs:
         pip install pytest pytest-html selenium webdriver-manager
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    - name: Run Automated QA Suite
+    - name: Debug - Verify File Naming
+      # This helps you see if your file is actually named test_suite.py
       run: |
-        # We run this and ensure a file is created even if tests are missing
-        python -m pytest --html=report.html --self-contained-html || echo "Tests failed or not found" > report.html
+        echo "Listing all files in root:"
+        ls -R
 
-    - name: Debug - Verify File Existence
+    - name: Run Automated QA Suite
+      # The '.' tells pytest to look everywhere for files starting with test_
+      # The '--collect-only' line in logs will tell you if it found your tests
       run: |
-        ls -la
-        [ -f report.html ] && echo "REPORT FOUND" || echo "REPORT MISSING"
+        python -m pytest . --html=report.html --self-contained-html || echo "Tests failed" > report.html
 
     - name: Upload QA Test Report Artifact
+      if: always() # Ensures report is uploaded even if tests fail
       uses: actions/upload-artifact@v4
       with:
         name: qa-test-report
